@@ -213,7 +213,7 @@ ShellResult run_command(char* cmd_line, Student** head, const char* csv_path){
 void print_error(ShellResult error_type){
     switch(error_type){
         case SHELL_ERR_UNKNOWN_COMMAND:
-            printf("Error: unknown command.\n"); break;
+            printf("Unknown command or permission denied.\n"); break;
         case SHELL_ERR_PERMISSION_DENIED:
             printf("Unknown command or permission denied.\n"); break;
         case SHELL_ERR_MISSING_ARGUMENT:
