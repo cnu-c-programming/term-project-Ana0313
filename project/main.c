@@ -69,7 +69,6 @@ void run_command_file(const char *cmd_file, const char *csv_path){
     while(fgets(line, sizeof(line), fp)){
         line[strcspn(line, "\r\n")]='\0';
         if(strlen(line)==0 || line[0]=='#'){
-            line_num++;
             continue;
         }
         printf("\n[command file:%d] %s\n", line_num, line);
