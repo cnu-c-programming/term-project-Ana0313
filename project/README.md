@@ -38,20 +38,16 @@ make clean      #빌드 파일 삭제
 
 ## 실행 방법
 make 한 뒤에 터미널에 직접 명령어를 입력하여 프로그램을 조작합니다.
-## Interactive Mode
 ```
+# Interactive Mode
 ./admin_shell students.csv     #관리자 모드로 실행
 ./client_shell students.csv    #클라이언트 모드로 실행
+
+# 명령어 파일 실행
+./admin_shell -f commands.txt students.csv   #관리자 모드에서 명령어 파일 실행
+./client_shell -f commands.txt students.csv  #클라이언트 모드에서 명령어 파일 실행
 ```
 - CSV 파일이 없으면 빈 목록으로 시작합니다.
-
-## 명령어 텍스트 파일 실행
-```
-./admin_shell -f commands.txt students.csv
-#관리자 모드에서 명령어 파일 실행
-./client_shell -f commands.txt students.csv
-#클라이언트 모드에서 명령어 파일 실행
-```
 - 명령어 텍스트 파일에서 한 줄에 명령어는 하나여야 합니다.
 
 ## CSV 파일 기본 형식
