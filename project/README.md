@@ -30,10 +30,10 @@ project/
 ##  빌드 방법(컴파일)
 이 프로젝트는 Makefile을 포함하고 있어, 터미널에서 간단한 명령어로 빌드할 수 있습니다.
 ```
-make all        #전체 빌드
+make all        #모든 프로그램 빌드
 make admin      #admin_shell만 빌드
 make client     #client_shell만 빌드
-make clean      #빌드된 파일 삭제
+make clean      #빌드 파일 삭제
 ```
 
 ## 실행 방법
