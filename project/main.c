@@ -51,6 +51,47 @@ void run_shell(const char *csv_path){
     free_all_students(&head);
 }
 
+void run_command_file(const char *cmd_file, const char *csv_path){
+    Student *head=NULL;
+    start_shell(csv_path, &head);
+
+    FILE *fp=fopen(cmd_file, "r");
+    if(fp==NULL){
+        printf("Error: could not open command file %s.\n", cmd_file);
+        free_all_students(&head);
+        return;
+    }
+
+    char line[256];
+    int line_num=1;
+    int exit_called=0;
+
+    while(fgets(line, sizeof(line), fp)){
+        line[strcspn(line, "\r\n")]='\0';
+        if(strlen(line)==0 || line[0]=='#'){
+            line_num++;
+            continue;
+        }
+        printf("\n[command file:%d] %s\n", line_num, line);
+        
+        ShellResult error_type=run_command(line, &head, csv_path);
+        
+        if(error_type==SHELL_EXIT){
+            exit_called=1;
+            break;
+        }else if(error_type!=SHELL_OK){
+            print_error(error_type);
+            printf("Skipped line %d.\n", line_num);
+        }
+        line_num++;
+    }
+    fclose(fp);
+
+    if(exit_called)  printf("Goodbye.\n");
+    
+    free_all_students(&head);
+}
+
 int main(int argc, char *argv[]){
     const char *csv_path=NULL;
     const char *cmd_file=NULL;
@@ -81,7 +122,20 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
-    run_shell(csv_path);
-
+#ifdef ADMIN_MODE
+    if(cmd_file){
+        run_command_file(cmd_file, csv_path);
+    }else{
+        run_shell(csv_path);
+    }
+#elif defined(CLIENT_MODE)
+    if(cmd_file){
+        run_command_file(cmd_file, csv_path);
+    }else{
+        run_shell(csv_path);
+    }
+#else
+    return 1;
+#endif
     return 0;
 }
