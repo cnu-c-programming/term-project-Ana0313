@@ -65,4 +65,4 @@ id,name,score
 | stats | `stats` | 총원, 평균 점수, 최고점, 최저점을 출력 | admin, client |
 | clear | `clear` | 터미널 화면을 깨끗하게 지움 | admin, client |
 | help | `help` | 사용 가능한 명령어 목록과 설명 출력 | admin, client |
-| exit | `exit` | 프로그램 종료(미저장 시 경고 발생) |
+| exit | `exit` | 프로그램 종료(미저장 시 경고 발생) | admin, client |
