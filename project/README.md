@@ -6,7 +6,17 @@
 
 ## 파일 구조
 project/
-
+├── main.c       
+├── student.h     
+├── student.c  
+├── file_io.h
+├── file_io.c      
+├── command.h    
+├── command.c   
+├── Makefile
+├── README.md 
+├── commands.txt
+└── students.csv 
 
 ## 주요 기능
 - 연결 리스트를 활용한 빠른 학생 데이터 추가/삭제/검색/수정.
@@ -51,6 +61,16 @@ id,name,score
 - name: 비어 있을 수 없습니다. 쉽표를 사용할 수 없습니다.
 - score: 0 이상 100 이하의 정수여야 합니다.
 - 파일은 일반 텍스트 CSV 형식으로 저장해야 합니다.
+
+## 명령어 텍스트 파일 기본 형식
+```
+list
+add 4 Alex 60
+delete 4
+list
+find 4
+exit
+```
 
 ## 명령어 목록
 | 명령어 | 형식 | 설명 | 사용 가능 모드 |
