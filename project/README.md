@@ -4,6 +4,10 @@
 - csv 파일을 통한 데이터 저장 및 불러오기를 지원합니다.
 - 권한에 따라 관리자(Admin)모드와 클라이언트(Client)모드로 나뉘어 실행됩니다.
 
+## 파일 구조
+project/
+
+
 ## 주요 기능
 - 연결 리스트를 활용한 빠른 학생 데이터 추가/삭제/검색/수정.
 - CSV 파일과 연동하여 영구적인 데이터 보관 및 불러오기.
@@ -49,3 +53,16 @@ id,name,score
 - 파일은 일반 텍스트 CSV 형식으로 저장해야 합니다.
 
 ## 명령어 목록
+| 명령어 | 형식 | 설명 | 사용 가능 모드 |
+|-------|-----------------|------|----------------|
+| add | `add <id> <name> <score>` | 새로운 학생 데이터 추가 | admin |
+| delete | `delete <id>` | 특정 id를 가진 학생을 삭제 | admin |
+| update | `update <id> <score>` | 특정 id를 가진 학생의 점수를 수정 | admin |
+| save | `save` | 현재까지의 변경 사항을 CSV 파일에 저장 | admin |
+| reload | `reload` | CSV 파일로부터 데이터를 다시 불러옴 | admin, client |
+| find | `find <id>` | 특정 id를 가진 학생의 상세 정보 출력 | admin, client |
+| list | `list` | 전체 학생의 목록 출력 | admin, client |
+| stats | `stats` | 총원, 평균 점수, 최고점, 최저점을 출력 | admin, client |
+| clear | `clear` | 터미널 화면을 깨끗하게 지움 | admin, client |
+| help | `help` | 사용 가능한 명령어 목록과 설명 출력 | admin, client |
+| exit | `exit` | 프로그램 종료(미저장 시 경고 발생) |
