@@ -4,10 +4,15 @@
 #include "command.h"
 #include "file_io.h"
 
+int unsaved=0;
+int unsaved_warning=0;
+
 ShellResult handle_save(char* args, Student** head, const char* csv_path){
     (void)args;
     int count=save_csv(csv_path, *head);
     if(count<0) return SHELL_ERR_FILE_WRITE;
+    unsaved=0;
+    unsaved_warning=0;
     printf("Saved %d students to %s.\n", count, csv_path);
     return SHELL_OK;
 }
@@ -36,6 +41,8 @@ ShellResult handle_add(char* args, Student** head, const char* csv_path){
 
     add_student(head, id, name, score);
     printf("Student added.\n");
+    unsaved=1;
+    unsaved_warning=0;
     return SHELL_OK;
 }
 
@@ -48,6 +55,8 @@ ShellResult handle_delete(char* args, Student** head, const char* csv_path){
 
     if(delete_student(head, id)){
         printf("Student deleted.\n");
+        unsaved=1;
+        unsaved_warning=0;
         return SHELL_OK;
     }
     return SHELL_ERR_STUDENT_NOT_FOUND;
@@ -63,6 +72,8 @@ ShellResult handle_update(char* args, Student** head, const char* csv_path){
 
     if(update_student(*head, id, score)){
         printf("Student updated.\n");
+        unsaved=1;
+        unsaved_warning=0;
         return SHELL_OK;
     }
     return SHELL_ERR_STUDENT_NOT_FOUND;
@@ -127,6 +138,11 @@ ShellResult handle_clear(char* args, Student** head, const char* csv_path){
 
 ShellResult handle_exit(char* args, Student** head, const char* csv_path){
     (void)args; (void)head; (void)csv_path;
+    if(unsaved==1 && unsaved_warning==0){
+        printf("Warning: You have unsaved changes. Type 'exit' again to quit without saving.\n");
+        unsaved_warning=1;
+        return SHELL_OK;
+    }
     return SHELL_EXIT;
 }
 
