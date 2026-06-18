@@ -11,6 +11,41 @@
 - 사용자가 직접 명령어를 타이핑하는 대화형 모드 외에도, 명령어들이 적힌 텍스트 파일을 읽어 순차적으로 자동 실행하는 기능 지원.
 - 관리자 모드에서 저장되지 않은 변경 사항이 있을 경우, 종료 전 경고 메시지 출력.
 
-##  빌드 방법
+##  빌드 방법(컴파일)
 이 프로젝트는 Makefile을 포함하고 있어, 터미널에서 간단한 명령어로 빌드할 수 있습니다.
+```
+make all        #전체 빌드
+make admin      #admin_shell만 빌드
+make client     #client_shell만 빌드
+make clean      #빌드된 파일 삭제
+```
 
+## 실행 방법
+make 한 뒤에 터미널에 직접 명령어를 입력하여 프로그램을 조작합니다.
+## Interactive Mode
+```
+./admin_shell students.csv     #관리자 모드로 실행
+./client_shell students.csv    #클라이언트 모드로 실행
+```
+## 명령어 텍스트 파일 실행
+```
+./admin_shell -f commands.txt students.csv
+#관리자 모드에서 명령어 파일 실행
+./client_shell -f commands.txt students.csv
+#클라이언트 모드에서 명령어 파일 실행
+```
+- 명령어 텍스트 파일에서 한 줄에 명령어는 하나여야 합니다.
+
+## CSV 파일 기본 형식
+```
+id,name,score
+1,Anastasia,80
+2,Stella,50
+3,Sebastian,70
+```
+- id: 양수 정수여야 합니다.
+- name: 비어 있을 수 없습니다. 쉽표를 사용할 수 없습니다.
+- score: 0 이상 100 이하의 정수여야 합니다.
+- 파일은 일반 텍스트 CSV 형식으로 저장해야 합니다.
+
+## 명령어 목록
