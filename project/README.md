@@ -5,6 +5,7 @@
 - 권한에 따라 관리자(Admin)모드와 클라이언트(Client)모드로 나뉘어 실행됩니다.
 
 ## 파일 구조
+```
 project/
 ├── main.c       
 ├── student.h     
@@ -16,7 +17,8 @@ project/
 ├── Makefile
 ├── README.md 
 ├── commands.txt
-└── students.csv 
+└── students.csv
+```
 
 ## 주요 기능
 - 연결 리스트를 활용한 빠른 학생 데이터 추가/삭제/검색/수정.
